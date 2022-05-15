@@ -50,3 +50,17 @@ services:
     image: pantsel/konga:next
     command: "-c prepare -a postgres -u postgresql://postgres:postgres@54.151.132.96:5432/kong"
     restart: on-failure
+  konga:
+    image: pantsel/konga:next
+    restart: always
+    environment:
+      DB_ADAPTER: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      TOKEN_SECRET: km1GUr4RkcQD7DewhJPNXrCuZwcKmqjb
+      DB_DATABASE: kong
+      DB_HOST: 54.151.132.96
+      DB_PORT: 5432
+      NODE_ENV: production
+    ports:
+      - "1337:1337"
