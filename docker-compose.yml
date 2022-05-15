@@ -31,6 +31,7 @@ services:
       KONG_PG_HOST: 54.151.132.96
       KONG_PG_PASSWORD: postgres
       KONG_PG_USER: postgres
+      KONG_LUA_SSL_TRUSTED_CERTIFICATE: system
       KONG_PLUGINS: bundled, kong-auth-request
     depends_on:
       - kong-migration
@@ -42,6 +43,8 @@ services:
     ports:
       - "8001:8001"
       - "80:8000"
+      - "443:8443"
+
 
   #######################################
   # Konga database prepare
