@@ -13,7 +13,7 @@ services:
     command: "kong migrations bootstrap"
     restart: on-failure
     environment:
-      KONG_PG_HOST: localhost
+      KONG_PG_HOST: 54.151.132.96
       KONG_PG_PASSWORD: postgres
       KONG_PG_USER: postgres
   #######################################
@@ -28,7 +28,7 @@ services:
       KONG_PROXY_LISTEN: 0.0.0.0:8000
       KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
       KONG_ADMIN_LISTEN: 0.0.0.0:8001
-      KONG_PG_HOST: localhost
+      KONG_PG_HOST: 54.151.132.96
       KONG_PG_PASSWORD: postgres
       KONG_PG_USER: postgres
       KONG_LUA_SSL_TRUSTED_CERTIFICATE: system
@@ -50,7 +50,7 @@ services:
   #######################################
   konga-prepare:
     image: pantsel/konga:next
-    command: "-c prepare -a postgres -u postgresql://postgres:postgres@localhost:5432/kong"
+    command: "-c prepare -a postgres -u postgresql://postgres:postgres@54.151.132.96:5432/kong"
     restart: on-failure
   konga:
     image: pantsel/konga:next
@@ -61,7 +61,7 @@ services:
       DB_PASSWORD: postgres
       TOKEN_SECRET: km1GUr4RkcQD7DewhJPNXrCuZwcKmqjb
       DB_DATABASE: kong
-      DB_HOST: localhost
+      DB_HOST: 54.151.132.96
       DB_PORT: 5432
       NODE_ENV: production
     ports:
