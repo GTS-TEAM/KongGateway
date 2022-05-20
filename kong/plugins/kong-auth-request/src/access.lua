@@ -39,11 +39,21 @@ function _M.execute(conf)
 end
 
 function _M.new_auth_request(origin_request_headers_to_forward_to_auth, keepalive_timeout)
+    local i = 0
+    local result = ""
+    for p in string.gmatch(kong.request.get_path(), "[^/]+") do
+        if i ~= 0 then
+            result = result .. "/".. p
+        end
+        i = i + 1
+    end
+    print(result)
     local headers = {
         charset = "utf-8",
-        path = kong.request.get_path(),
+        path = result,
         ["content-type"] = "application/json"
     }
+    
     for _, name in ipairs(origin_request_headers_to_forward_to_auth) do
         local header_val = kong.request.get_header(name)
         if header_val then
